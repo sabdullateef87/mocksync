@@ -15,8 +15,10 @@ class User(SQLModel, table=True):
     is_verified: bool = Field(default=False)
     is_superuser: bool = Field(default=False)
     failed_login_attempts: int = Field(default=0)
+    subscription:str = Field(nullable=False)
     
     projects: list["Project"] = Relationship(back_populates="users")
+    
 
     
 class Project(SQLModel, table=True):
