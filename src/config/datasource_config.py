@@ -3,7 +3,7 @@ from typing import Annotated
 from dotenv import load_dotenv
 from fastapi import Depends
 from sqlmodel import Field, Session, SQLModel, select, create_engine
-from src.models.model import User, Project, Collection, API
+# from src.models.model import User, Project, Collection, API
 
 load_dotenv();
 
@@ -22,11 +22,11 @@ SQLALCHEMY_DATABASE_URL = build_database_connection_string()
 connect_args = {"check_same_thread": False}
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
 
-def create_db_and_table():
+async def create_db_and_table():
     print("creating sql tables")
     SQLModel.metadata.create_all(engine)
     
-def get_session():
+async def get_session():
     with Session(engine) as session:
         yield session
         

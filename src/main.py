@@ -2,18 +2,19 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.config.datasource_config import create_db_and_table
+from src.router import user_router
 
 app = FastAPI()
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.include_router(user_router.router)
 
 @app.on_event("startup")
 async def on_startup():
-    create_db_and_table()
+    await create_db_and_table()
 
