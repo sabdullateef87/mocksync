@@ -1,6 +1,6 @@
 
 from fastapi import Depends
-from src.models.model import User
+from src.models.user_model import User
 from src.models.request.user_requests import CreateUser
 from src.repository.user_repository import UserRepository
 from src.util.jwt_util import get_password_hash

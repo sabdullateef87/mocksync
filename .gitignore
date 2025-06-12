@@ -18,3 +18,5 @@ __pycache__/
 lib/
 bin/
 .vscode/
+.codegpt
+.docker-compose.yml

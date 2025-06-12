@@ -16,22 +16,11 @@ class User(SQLModel, table=True):
     is_superuser: bool = Field(default=False)
     failed_login_attempts: int = Field(default=0)
     subscription:str = Field(nullable=False)
-    
-    # projects: list["Project"] = Relationship(back_populates="user")
+
+    # One-to-many relationship
+    projects: List["Project"] = Relationship(back_populates="user")
     
 
-    
-# class Project(SQLModel, table=True):
-#     __tablename__ = "project"
-
-#     id: int = Field(default=None, primary_key=True)
-#     name: str = Field(nullable=False)
-#     description: Optional[str] = None
-    
-#     user_id: int = Field(foreign_key="users.id")
-#     user: User | None = Relationship(back_populates="project")
-    
-#     collection: list["Collection"] = Relationship(back_populates="project")
     
 # class Collection(SQLModel, table=True):
 #     __tablename__ = "collection"
